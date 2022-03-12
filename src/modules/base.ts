@@ -1,3 +1,5 @@
-export default class BaseModule {
-
+interface Base {
+  run(data: any): Promise<any>;
 }
+
+export default Base;

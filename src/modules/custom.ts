@@ -1,16 +1,13 @@
-import type Base from './base';
+import Common from './common';
 
 type ProcessorFunc<InputType, OutputType> = (data: InputType) => Promise<OutputType>;
 
-class Custom<InputType, OutputType> implements Base {
-  processor: ProcessorFunc<InputType, OutputType>;
+class Custom<InputType, OutputType> extends Common<InputType, OutputType> {
+  process: ProcessorFunc<InputType, OutputType>;
 
   constructor(processor: ProcessorFunc<InputType, OutputType>) {
-    this.processor = processor;
-  }
-
-  async run(data: InputType): Promise<OutputType> {
-    return this.processor(data);
+    super();
+    this.process = processor;
   }
 }
 

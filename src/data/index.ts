@@ -1,4 +1,4 @@
-class Data<T> {
+export class Data<T> {
   current: T;
 
   previous: any;

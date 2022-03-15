@@ -1,4 +1,4 @@
-interface Base {
+export interface Base {
   run(data: any): Promise<any>;
 }
 

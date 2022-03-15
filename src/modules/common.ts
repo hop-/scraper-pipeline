@@ -1,7 +1,7 @@
-import type Base from './base';
+import { Base } from './base';
 import Data from '../data';
 
-abstract class Common<InputType, OutputType> implements Base {
+export abstract class Common<InputType, OutputType> implements Base {
   abstract process(data: InputType, previous: any, old: any[]): Promise<OutputType>;
 
   async run(data: Data<InputType>): Promise<Data<OutputType>> {

@@ -1,13 +1,16 @@
 import * as Bluebird from 'bluebird';
 import type { Base as BaseModule } from '../modules';
+import Data from '../data';
 
 export type Pipe = BaseModule | Pipe[];
 
-async function process(data: any, pipe: Pipe): Promise<any> {
+// recursive function
+async function process(data: Data<any>, pipe: Pipe): Promise<any> {
   if (pipe instanceof Array) {
-    const dataArray = data instanceof Array ? data : [data];
+    const { current } = data;
+    const dataArray = current instanceof Array ? current : [current];
 
-    return Bluebird.map(dataArray, async (obj: any) => {
+    const processedData = await Bluebird.map(dataArray, async (obj: any) => {
       let d = obj;
       await Bluebird.each(pipe, async (p: Pipe) => {
         d = await process(d, p);
@@ -15,6 +18,9 @@ async function process(data: any, pipe: Pipe): Promise<any> {
 
       return d;
     });
+
+    // collecting all results in new array and creating hew data
+    return data.new(processedData.map((p) => p));
   }
 
   return pipe.run(data);
@@ -28,11 +34,9 @@ export class Pipeline {
 
   // run the pipeline
   async run(): Promise<void> {
-    const emptyData = {
-      current: null,
-      previous: [],
-    };
+    const emptyData = new Data(null);
 
+    // recursive function call
     await process(emptyData, this.pipe);
   }
 }

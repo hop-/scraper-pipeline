@@ -5,8 +5,8 @@ type ProcessorFunc<InputType, OutputType> = (data: InputType, previous: any, old
 export class Custom<InputType, OutputType> extends Common<InputType, OutputType> {
   process: ProcessorFunc<InputType, OutputType>;
 
-  constructor(name:string, processor: ProcessorFunc<InputType, OutputType>) {
-    super(name);
+  constructor(processor: ProcessorFunc<InputType, OutputType>) {
+    super();
     this.process = processor;
   }
 }

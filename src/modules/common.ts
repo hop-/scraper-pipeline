@@ -1,5 +1,5 @@
 import { Base } from './base';
-import Data from '../data';
+import { Data } from '../data';
 
 export abstract class Common<InputType, OutputType> implements Base {
   abstract process(data: InputType, previous: any, old: any[]): Promise<OutputType>;

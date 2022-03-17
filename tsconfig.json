@@ -3,8 +3,9 @@
 		"target": "es5",
 		"module": "commonjs",
 		"moduleResolution": "node",
+
 		"lib": [
-			"es2015"
+			"es2015",
 		],
 
 		"rootDir": "src",
@@ -31,8 +32,17 @@
 
 		"pretty": true
 	},
+
+	"types": [
+		"node"
+	],
+
 	"include": [
 		"typings/**/*",
 		"src/**/*"
-	]
+	],
+
+	"typeRoots": [
+    "./node_modules/@types/",
+  ]
 }

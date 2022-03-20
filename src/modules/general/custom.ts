@@ -1,4 +1,4 @@
-import { Common } from './common';
+import { Common } from '../common';
 
 type ProcessorFunc<InputType, OutputType> = (data: InputType, previous: any, old: any[]) => Promise<OutputType>;
 

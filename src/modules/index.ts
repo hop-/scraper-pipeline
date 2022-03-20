@@ -1,3 +1,3 @@
 export * from './base';
 export * from './common';
-export * from './custom';
+export * as General from './general';

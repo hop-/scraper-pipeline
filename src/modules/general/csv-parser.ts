@@ -18,7 +18,7 @@ export type ParserOptions = {
 // csv delimiter
 const csvDelimiter = ',';
 // new line delimiter
-const newlineDelimiter = '/n';
+const newlineDelimiter = '\n';
 
 function csvToObject(headers: string[], row: string): Obj {
   const obj: Obj = {};

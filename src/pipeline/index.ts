@@ -18,7 +18,7 @@ async function process(data: Data<any>, pipe: Pipe): Promise<any> {
       });
 
       return d;
-    });
+    }, { concurrency: 10 }); // TODO: concurrency hardcoded
 
     // collecting all results in new array and creating hew data
     const da = processedData.reduce((a, d) => [

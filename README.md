@@ -1,5 +1,7 @@
 # Node.js Pipelines
 
+![Build Status](https://github.com/hop-/scraper-pipeline/actions/workflows/main.yml/badge.svg)
+
 ## Introduction
 
 Scraper pipeline is typescript asynchronous module.

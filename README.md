@@ -17,7 +17,7 @@ It also let you define custom modules when the generic fonctional is not enough.
 How to install
 
 ```shell
-npm install scraper-pipeline
+npm i scraping-pipeline
 ```
 
 Here are some examples to help you understand the features

@@ -5,7 +5,7 @@ import { Data } from '../data';
 export type Pipe = BaseModule | Pipe[];
 
 // recursive function
-async function process(data: Data<any>, pipe: Pipe): Promise<any> {
+async function process(data: Data<any>, pipe: Pipe, concurrency: number): Promise<any> {
   if (pipe instanceof Array) {
     const { current } = data;
     const dataArray = current instanceof Array ? current : [current];
@@ -14,11 +14,11 @@ async function process(data: Data<any>, pipe: Pipe): Promise<any> {
       let d = new Data(obj);
 
       await Bluebird.each(pipe, async (p: Pipe) => {
-        d = await process(d, p);
+        d = await process(d, p, concurrency);
       });
 
       return d;
-    }, { concurrency: 10 }); // TODO: concurrency hardcoded
+    }, { concurrency });
 
     // collecting all results in new array and creating hew data
     const da = processedData.reduce((a, d) => [
@@ -34,8 +34,11 @@ async function process(data: Data<any>, pipe: Pipe): Promise<any> {
 export class Pipeline {
   pipe: Pipe;
 
-  constructor(pipe: Pipe) {
+  concurrency: number;
+
+  constructor(pipe: Pipe, concurrency: number = 10) {
     this.pipe = pipe;
+    this.concurrency = concurrency;
   }
 
   // run the pipeline
@@ -43,6 +46,6 @@ export class Pipeline {
     const emptyData = new Data(null);
 
     // recursive function call
-    await process(emptyData, this.pipe);
+    await process(emptyData, this.pipe, this.concurrency);
   }
 }

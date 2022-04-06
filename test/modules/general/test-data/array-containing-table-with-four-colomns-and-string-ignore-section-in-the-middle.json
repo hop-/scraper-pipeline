@@ -1,0 +1,11 @@
+[
+  "val00", "val01", "val02", "val03",
+  "val10", "val11",
+  "ignoreStart",
+  "someString0",
+  "someString1",
+  "someString2",
+  "ignoreEnd",
+  "val12", "val13",
+  "val20", "val21", "val22", "val23"
+]

@@ -2,7 +2,7 @@ import * as camelCase from 'camelcase';
 
 import { Common } from '../common';
 
-export type Obj = {
+type Obj = {
   [name: string]: string,
 };
 

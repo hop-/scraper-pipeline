@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Scraping pipeline is typescript asynchronous module.
+Scraping pipeline is a typescript asynchronous module.
 
 It helps to organize the code in pipeline applications.
 
@@ -60,15 +60,23 @@ First module doesn't have feed `Data`.
 
 ### Modules
 
-`Modules` are the small components which are usually doing a single task.
+`Modules` are small components which are usually doing a single task.
 
 All `Modules` are implementing `Modules.Base` and extending `Modules.Common<InputType, OutputType>`.
 
-There are some `General` `Modules` which are designed to do generic tasks.
+There are some `General` `Modules` which are designed to do some standard tasks.
 
 #### CsvParser
 
 `Modules.General.CsvParser` is a module which helps to parse CSV `Data` and returns a structured output.
+
+#### ArrayParser
+
+`Modules.General.ArrayParser` is a generic module which helps to convert string arrays to some meaningful structure.
+
+This module may be useful when you need to parse some raw data from documents.
+
+It gets a `ParsingTemplate` as an constructor argument which lets the parser know how to convert the array to some structured data.
 
 #### Custom
 
